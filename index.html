@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    
+    <div id="primer-recuadro">
+         
+        <div>
+            <h2 id="titulo-principal">Bienvenido a nuestro sitio de reservas</h2>
+            <img id="img-1" src="" alt="">
+            <p id="parrafo-principal">Complete los siguientes datos</p>
+        </div>
+
+        <fieldset>
+                <legend>Solicitud de reserva</legend>
+                <label id="opciones-camas" for="">Cantidad de camas</label>
+                <select name="" id="select-1">
+                <option value="0">-</option>
+                <option value="1 cama">1 cama</option>
+                <option value="2 camas">2 camas</option>
+                </select>
+
+                <label id="opciones-dias" for="">Cantidad de dias</label>
+                <select name="" id="select-2" class="hidden">
+                <option value="0">-</option>    
+                <option value="1 dia">1 dia</option>
+                <option value="3 dias">3 dias</option>
+                <option value="7 dias">7 dias</option>
+                </select>
+
+                <label id="opciones-dia-ingreso" for="">Dia de ingreso</label>
+                <select name="" id="select-3" class="hidden">
+                <option value="0">-</option>   
+                <option value="Lunes">Lunes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Sabado">Sabado</option>
+                </select>
+
+
+                <label id="opciones-servicio-extra" for="">Servicio Extra</label>
+                <select name="" id="select-4" class="hidden">
+                <option value="0">-</option>
+                <option value="Desayuno">Desayuno</option>
+                <option value="Desayuno y Merienda">Desayuno y Merienda</option>
+                <option value="Desayuno,merienda y cena">Desayuno,merienda y cena</option>
+                </select>
+
+        </fieldset>
+
+                <button onclick="mostrarReserva()">Haz click aqui</button>
+
+    </div>
+
+        <div id="lista-reserva">
+            <legend id="titulo-detalle">Detalles de la reserva :</legend>
+            <ul id="datos-ingresados">
+                
+            </ul>
+        </div>
+    
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>
