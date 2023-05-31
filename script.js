@@ -26,30 +26,38 @@ selectDiaIngreso.style.display = "none";
 selectServicioExtra.style.display = "none";
 
 
-
 function mostrarReserva() {
+  
   ulDetalles.innerHTML = '';
 
+  
   if (selectCamas.value !== '0') {
     ulDetalles.innerHTML += `<li>${ELECCION_CAMAS}: ${selectCamas.value}</li>`;
+    labelOpcionesCamas.style.display = "none";
+    selectCamas.style.display = "none";
     labelOpcionesDias.style.display = "inline-block";
     selectDias.style.display = "inline-block";
   }
 
   if (selectDias.value !== '0') {
     ulDetalles.innerHTML += `<li>${ELECCION_DIAS}: ${selectDias.value}</li>`;
+    labelOpcionesDias.style.display = "none";
+    selectDias.style.display = "none";
     labelOpcionesDiaIngreso.style.display = "inline-block";
     selectDiaIngreso.style.display = "inline-block";
   }
 
   if (selectDiaIngreso.value !== '0') {
     ulDetalles.innerHTML += `<li>${ELECCION_DIA_INGRESO}: ${selectDiaIngreso.value}</li>`;
+    labelOpcionesDiaIngreso.style.display = "none";
+    selectDiaIngreso.style.display = "none";
     labelOpcionesServicioExtra.style.display = "inline-block";
     selectServicioExtra.style.display = "inline-block";
   }
 
   if (selectServicioExtra.value !== '0') {
     ulDetalles.innerHTML += `<li>${ELECCION_SERV_EXTRA}: ${selectServicioExtra.value}</li>`;
+    labelOpcionesServicioExtra.style.display = "none";
+    selectServicioExtra.style.display = "none";
   }
-
 }
