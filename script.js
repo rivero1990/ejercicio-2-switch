@@ -13,51 +13,75 @@ const IMAGEN_1 = "https://th.bing.com/th/id/OIP.H0G_89DcrQqKoEKw0FJGCAHaDt?w=346
 
 imagenHotel.src = IMAGEN_1;
 
+const OPC_POR_DEF = "0";
+
 const ELECCION_CAMAS = "Cantidad de camas";
 const ELECCION_DIAS = "Cantidad de días";
 const ELECCION_DIA_INGRESO = "Día de ingreso";
 const ELECCION_SERV_EXTRA = "Servicio extra";
 
-labelOpcionesDias.style.display = "none";
-labelOpcionesDiaIngreso.style.display = "none";
-labelOpcionesServicioExtra.style.display = "none";
-selectDias.style.display = "none";
-selectDiaIngreso.style.display = "none";
-selectServicioExtra.style.display = "none";
+
+ocultarOpcionPagina(labelOpcionesDias, selectDias);
+ocultarOpcionPagina(labelOpcionesDiaIngreso, selectDiaIngreso);
+ocultarOpcionPagina(labelOpcionesServicioExtra, selectServicioExtra);
 
 
 function mostrarReserva() {
-  
+
   ulDetalles.innerHTML = '';
+  actualizaSeccOpciones(selectCamas, labelOpcionesCamas, labelOpcionesDias, selectDias, ELECCION_CAMAS);
+  actualizaSeccOpciones(selectDias, labelOpcionesDias, labelOpcionesDiaIngreso, selectDiaIngreso, ELECCION_DIAS);
+  actualizaSeccOpciones(selectDiaIngreso, labelOpcionesDiaIngreso, labelOpcionesServicioExtra,selectServicioExtra, ELECCION_DIA_INGRESO);
+  finalizaSeccionOpciones(selectServicioExtra, labelOpcionesServicioExtra, ELECCION_SERV_EXTRA);
+}
 
-  
-  if (selectCamas.value !== '0') {
-    ulDetalles.innerHTML += `<li>${ELECCION_CAMAS}: ${selectCamas.value}</li>`;
-    labelOpcionesCamas.style.display = "none";
-    selectCamas.style.display = "none";
-    labelOpcionesDias.style.display = "inline-block";
-    selectDias.style.display = "inline-block";
+
+/**
+ * Actualiza la seccion de opciones 
+ * @param {HTMLSelectElement} selectOpcion la lista de opciones actuales
+ * @param {HTMLLabelElement} labelTituloOpc el titulo de la lista de opciones actuales
+ * @param {HTMLLabelElement} labelTituloOpcSig el titulo de la lista de opciones siguiente
+ * @param {HTMLSelectElement} selectOpcSig la lista de opciones siguiente
+ * @param {String} infoDetalleOpc es la informacion del detalle de la opcion a mostrar
+ */
+function actualizaSeccOpciones(selectOpcion, labelTituloOpc, labelTituloOpcSig, selectOpcSig, infoDetalleOpc) {
+  if (selectOpcion.value !== OPC_POR_DEF) {
+    actualizaSeccDetallesReserva(infoDetalleOpc, selectOpcion);
+    ocultarOpcionPagina(labelTituloOpc, selectOpcion);
+    labelTituloOpcSig.style.display = "inline-block";
+    selectOpcSig.style.display = "inline-block";
   }
+}
 
-  if (selectDias.value !== '0') {
-    ulDetalles.innerHTML += `<li>${ELECCION_DIAS}: ${selectDias.value}</li>`;
-    labelOpcionesDias.style.display = "none";
-    selectDias.style.display = "none";
-    labelOpcionesDiaIngreso.style.display = "inline-block";
-    selectDiaIngreso.style.display = "inline-block";
-  }
+/**
+ * Oculta la opcion recibida en la pagina
+ * @param {*} labelTituloOpc el titulo de la lista de opciones a ocultar
+ * @param {*} selectOpcion la lista de opciones a ocultar
+ */
+function ocultarOpcionPagina(labelTituloOpc, selectOpcion) {
+  labelTituloOpc.style.display = "none";
+  selectOpcion.style.display = "none";
+}
 
-  if (selectDiaIngreso.value !== '0') {
-    ulDetalles.innerHTML += `<li>${ELECCION_DIA_INGRESO}: ${selectDiaIngreso.value}</li>`;
-    labelOpcionesDiaIngreso.style.display = "none";
-    selectDiaIngreso.style.display = "none";
-    labelOpcionesServicioExtra.style.display = "inline-block";
-    selectServicioExtra.style.display = "inline-block";
-  }
+/**
+ * Actualiza la seccion de detalles de la reserva
+ * @param {HTMLSelectElement} selectOpcion la lista de opciones actuales
+ * @param {String} infoDetalleOpc es la informacion del detalle de la opcion a mostrar
+ */
+function actualizaSeccDetallesReserva(infoDetalleOpc, selectOpcion) {
+  ulDetalles.innerHTML += `<p>${infoDetalleOpc}: ${selectOpcion.value}</p>`;
+}
 
-  if (selectServicioExtra.value !== '0') {
-    ulDetalles.innerHTML += `<li>${ELECCION_SERV_EXTRA}: ${selectServicioExtra.value}</li>`;
-    labelOpcionesServicioExtra.style.display = "none";
-    selectServicioExtra.style.display = "none";
+
+/**
+ * Finaliza la seccion de opciones
+ * @param {HTMLSelectElement} selectOpcion la ultima lista de opciones 
+ * @param {HTMLLabelElement} labelTituloOpc el ultima titulo de la lista de opciones
+ * @param {String} infoDetalleOpc es la informacion del detalle de la ultima opcion a mostrar
+ */
+function finalizaSeccionOpciones(selectOpcion, labelTituloOpc, infoDetalleOpc ){
+  if (selectOpcion.value !== OPC_POR_DEF) {
+    actualizaSeccDetallesReserva(infoDetalleOpc, selectOpcion);
+    ocultarOpcionPagina(labelTituloOpc, selectOpcion);
   }
 }
